@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
@@ -10,110 +9,123 @@ body {
     background: linear-gradient(135deg, #0f0f0f, #1a0033);
     color: #fff;
 
-    /* CENTRALIZAÇÃO PERFEITA */
     display: flex;
     justify-content: center;
     align-items: center;
 
     min-height: 100vh;
-    padding: 20px;
 }
 
-/* Container principal */
+/* Container ocupa quase tudo */
 .container {
-    width: 100%;
-    max-width: 500px;
+    width: 95%;
+    max-width: 800px;
+    height: 90vh;
 
-    padding: 25px;
-    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    background: rgba(20, 20, 20, 0.9);
-    box-shadow: 0 0 25px rgba(138, 43, 226, 0.5);
+    padding: 30px;
+    border-radius: 25px;
+
+    background: rgba(20, 20, 20, 0.95);
+    box-shadow: 0 0 40px rgba(138, 43, 226, 0.6);
 }
 
-/* Título */
+/* Título grande */
 h1 {
-    font-size: 26px;
+    font-size: 32px;
+    margin-bottom: 10px;
     color: #bb86fc;
     text-shadow: 0 0 10px #bb86fc;
 }
 
-/* Pergunta */
-#pergunta {
-    margin-top: 20px;
-    font-size: 20px;
-}
-
 /* Progresso */
 #progresso {
-    margin-top: 5px;
-    color: #aaa;
-    font-size: 14px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #ccc;
 }
 
-/* Grid */
+/* Pergunta gigante */
+#pergunta {
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+/* Opções em grid */
 .opcoes {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 25px;
+    gap: 20px;
 }
 
-/* Botões grandes (melhor pro dedo) */
+/* Botões GRANDES estilo jogo */
 .opcao {
+    padding: 25px;
+    font-size: 20px;
+
+    border-radius: 15px;
     background: #1f1f1f;
-    padding: 18px;
-    border-radius: 12px;
+
+    border: 2px solid #333;
     cursor: pointer;
 
-    font-size: 16px;
-
     transition: 0.25s;
-    border: 2px solid #333;
 }
 
 /* Hover */
 .opcao:hover {
-    transform: scale(1.05);
+    transform: scale(1.07);
     border-color: #bb86fc;
-    box-shadow: 0 0 10px #bb86fc;
+    box-shadow: 0 0 15px #bb86fc;
 }
 
 /* Correta */
 .correta {
     background: #00c853 !important;
-    box-shadow: 0 0 15px #00ff88;
+    box-shadow: 0 0 20px #00ff88;
 }
 
 /* Errada */
 .errada {
     background: #d50000 !important;
-    box-shadow: 0 0 15px #ff1744;
+    box-shadow: 0 0 20px #ff1744;
 }
 
 /* Resultado */
 #resultado {
     display: none;
-    margin-top: 30px;
-    font-size: 20px;
+    font-size: 26px;
+    margin-top: 20px;
 }
-@media (max-width: 480px) {
+
+/* 📱 MOBILE (fica ainda maior e melhor) */
+@media (max-width: 600px) {
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        padding: 25px;
+    }
 
     h1 {
-        font-size: 22px;
+        font-size: 28px;
     }
 
     #pergunta {
-        font-size: 18px;
-    }
-
-    .opcao {
-        padding: 20px;
-        font-size: 15px;
+        font-size: 24px;
     }
 
     .opcoes {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
+    .opcao {
+        font-size: 22px;
+        padding: 22px;
+    }
 }
