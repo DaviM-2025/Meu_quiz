@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Quiz sobre mim</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>O quanto você me conhece? 🤔</h1>
+
+    <h2 id="pergunta"></h2>
+
+    <div class="opcoes" id="opcoes"></div>
+
+    <div id="resultado"></div>
+
+</div>
+
+<script>
+const quiz = [
+    {
+        pergunta: "O que eu mais gosto de fazer?",
+        opcoes: ["Sair", "Programar", "Dormir", "Comer"],
+        correta: 1
+    },
+    {
+        pergunta: "Qual meu maior objetivo?",
+        opcoes: ["Ser famoso", "Viajar", "Evoluir mentalmente", "Ficar rico rápido"],
+        correta: 2
+    },
+    {
+        pergunta: "O que mais me irrita?",
+        opcoes: ["Barulho", "Pessoas falsas", "Acordar cedo", "Calor"],
+        correta: 1
+    }
+];
+
+let indice = 0;
+let pontos = 0;
+
+function carregarPergunta() {
+    const pergunta = quiz[indice];
+
+    document.getElementById("pergunta").innerText = pergunta.pergunta;
+
+    const opcoesDiv = document.getElementById("opcoes");
+    opcoesDiv.innerHTML = "";
+
+    pergunta.opcoes.forEach((opcao, i) => {
+        const div = document.createElement("div");
+        div.classList.add("opcao");
+        div.innerText = opcao;
+
+        div.onclick = () => verificar(div, i);
+
+        opcoesDiv.appendChild(div);
+    });
+}
+
+function verificar(elemento, i) {
+    const correta = quiz[indice].correta;
+    const opcoes = document.querySelectorAll(".opcao");
+
+    opcoes.forEach((op, index) => {
+        op.onclick = null;
+
+        if (index === correta) {
+            op.classList.add("correta");
+        } else if (index === i) {
+            op.classList.add("errada");
+        }
+    });
+
+    if (i === correta) {
+        pontos++;
+    }
+
+    setTimeout(() => {
+        indice++;
+
+        if (indice < quiz.length) {
+            carregarPergunta();
+        } else {
+            mostrarResultado();
+        }
+    }, 1000);
+}
+
+function mostrarResultado() {
+    document.getElementById("pergunta").style.display = "none";
+    document.getElementById("opcoes").style.display = "none";
+
+    const resultado = document.getElementById("resultado");
+    resultado.style.display = "block";
+
+    resultado.innerHTML = `
+        <h2>Resultado final</h2>
+        <p>Você acertou ${pontos} de ${quiz.length}</p>
+    `;
+}
+
+carregarPergunta();
+</script>
+
+</body>
+</html>
